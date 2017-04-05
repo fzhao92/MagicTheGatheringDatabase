@@ -1,0 +1,6 @@
+framework module Pods_MagicTheGatheringDatabaseTests {
+  umbrella header "Pods-MagicTheGatheringDatabaseTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
