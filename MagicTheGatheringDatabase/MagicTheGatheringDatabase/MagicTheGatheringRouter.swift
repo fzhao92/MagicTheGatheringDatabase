@@ -38,9 +38,9 @@ enum MagicTheGatheringRouter: URLRequestConvertible {
         let parameters: [String: Any] = {
             switch self {
             case .allCards, .specificCard:
-                return [:]
+                return ["pageSize": 15]
             case .searchCards(let cardName):
-                return ["name": cardName]
+                return ["name": cardName, "pageSize": 15]
             }
         }()
         
