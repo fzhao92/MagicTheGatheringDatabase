@@ -64,7 +64,7 @@ class APIClient {
         }
     }
     
-    func downloadImage(url: String, completion: @escaping (UIImage?) -> Void) {
+    static func downloadImage(url: String, completion: @escaping (UIImage?) -> Void) {
         Alamofire.request(url).responseImage { (response) in
             switch response.result {
             case .success(let value):

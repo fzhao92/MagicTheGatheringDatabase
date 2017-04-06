@@ -17,17 +17,18 @@ enum Rarity: String {
 
 struct Card {
     let name: String
+    let id: String
     let rarity: Rarity
     let setName: String
     let flavor: String
     let artist: String
     let type: String
-    let imageUrl: URL?
+    let imageUrl: String
     var image: UIImage?
     
     init(dict: JSON) {
         name = dict["name"].stringValue
-        
+        id = dict["id"].stringValue
         let rarityStr = dict["rarity"].stringValue
         
         switch rarityStr {
@@ -43,14 +44,12 @@ struct Card {
         flavor = dict["flavor"].stringValue
         artist = dict["artist"].stringValue
         type = dict["type"].stringValue
-        
-        let imageUrlStr = dict["imageUrl"].stringValue
-        
-        if let url = URL(string: imageUrlStr) {
-            imageUrl = url
-        }else {
-            print("Malformed image url")
-            imageUrl = nil
-        }
+        imageUrl = dict["imageUrl"].stringValue
     }
+}
+
+extension Card: Equatable { }
+
+func == (lhs: Card, rhs: Card) -> Bool {
+    return lhs.id == rhs.id
 }

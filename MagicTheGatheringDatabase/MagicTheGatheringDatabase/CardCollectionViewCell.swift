@@ -25,24 +25,36 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     lazy fileprivate var cardImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+        imageView.backgroundColor = UIColor.clear
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     lazy fileprivate var nameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Arial Rounded MT Bold", size: 15)
+        label.textColor = UIColor.black
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.backgroundColor = UIColor.orange
+        label.backgroundColor = UIColor.clear
         return label
     }()
     
     lazy fileprivate var rarityLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor.green
+        label.font = UIFont(name: "Arial Rounded MT Bold", size: 15)
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
+        label.textAlignment = .center
         return label
+    }()
+    
+    lazy fileprivate var spinner: UIActivityIndicatorView = {
+        let activityView = UIActivityIndicatorView()
+        activityView.isHidden = true
+        activityView.hidesWhenStopped = true
+        return activityView
     }()
     
     override init(frame: CGRect) {
@@ -56,29 +68,44 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func setupSubviews() {
         contentView.addSubview(cardImage)
+        contentView.addSubview(spinner)
         contentView.addSubview(nameLabel)
         contentView.addSubview(rarityLabel)
         
         cardImage.snp.makeConstraints { (make) in
-            make.topMargin.equalTo(contentView.snp.topMargin)
-            make.leadingMargin.equalTo(contentView.snp.leadingMargin)
-            make.trailingMargin.equalTo(contentView.snp.trailingMargin)
+            make.top.equalTo(contentView.snp.top).offset(10)
+            make.leading.equalTo(contentView.snp.leading).offset(10)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-10)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.7)
         }
         
         nameLabel.snp.makeConstraints { (make) in
-            make.topMargin.equalTo(cardImage.snp.bottomMargin)
-            make.width.equalTo(cardImage.snp.width)
+            make.top.equalTo(cardImage.snp.bottom).offset(5)
+            make.leading.equalTo(contentView.snp.leading)
+            make.trailing.equalTo(contentView.snp.trailing)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.1)
-            make.centerX.equalTo(cardImage.snp.centerX)
         }
         
         rarityLabel.snp.makeConstraints { (make) in
-            make.topMargin.equalTo(nameLabel.snp.bottomMargin)
-            make.width.equalTo(nameLabel.snp.width)
+            make.top.equalTo(nameLabel.snp.bottom)
+            make.leading.equalTo(nameLabel.snp.leading)
+            make.trailing.equalTo(nameLabel.snp.trailing)
             make.height.equalTo(nameLabel.snp.height)
-            make.centerX.equalTo(nameLabel.snp.centerX)
         }
         
+        spinner.snp.makeConstraints { (make) in
+            make.centerX.equalTo(cardImage.snp.centerX)
+            make.centerY.equalTo(cardImage.snp.centerY)
+        }
+    }
+    
+    func updateWithImage(image: UIImage?) {
+        if let imageToDisplay = image {
+            spinner.stopAnimating()
+            cardImage.image = imageToDisplay
+        } else {
+            spinner.startAnimating()
+            cardImage.image = nil
+        }
     }
 }
