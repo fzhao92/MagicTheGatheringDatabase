@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let layout = UICollectionViewFlowLayout()
         let viewController = CardsCollectionViewController(collectionViewLayout: layout)
+        viewController.dataSource = CardDataSource()
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         return true
     }

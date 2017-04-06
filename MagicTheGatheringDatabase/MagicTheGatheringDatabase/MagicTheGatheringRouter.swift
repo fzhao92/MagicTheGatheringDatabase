@@ -54,8 +54,5 @@ enum MagicTheGatheringRouter: URLRequestConvertible {
         
         return try URLEncoding.default.encode(request, with: parameters)
     }
-    
-    
 
 }
-

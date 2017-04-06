@@ -8,27 +8,19 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "cardCell"
 
 class CardsCollectionViewController: UICollectionViewController {
+
+    var dataSource: CardDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        APIClient.getAllCards(page: 1) { (cards) in
-//            print("All cards total: \(cards.count)")
-//        }
-//        APIClient.getCardByID(id: "926234c2fe8863f49220a878346c4c5ca79b6046") { (card) in
-//            print("successfully got card by id")
-//        }
-        APIClient.searchForCard(query: "Animate") { (cards) in
-            print("All cards total: \(cards.count)")
-        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        self.collectionView!.dataSource = dataSource
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
     }
 
@@ -46,26 +38,6 @@ class CardsCollectionViewController: UICollectionViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 1
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = UIColor.red
-        // Configure the cell
-    
-        return cell
-    }
 
     // MARK: UICollectionViewDelegate
 

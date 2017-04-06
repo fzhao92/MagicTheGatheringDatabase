@@ -44,14 +44,13 @@ class APIClient {
         }
     }
     
-    static func searchForCard(query: String, completion: @escaping ([Card]) -> Void) {
-        Alamofire.request(MagicTheGatheringRouter.searchCards(searchQuery: query, page: 1))
+    static func searchForCard(query: String, page: Int, completion: @escaping ([Card]) -> Void) {
+        Alamofire.request(MagicTheGatheringRouter.searchCards(searchQuery: query, page: page))
         .responseJSON { (response) in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 let jsonArray = json["cards"].arrayValue
-                print("Search results: \(json)")
                 var cards = [Card]()
                 for dict in jsonArray {
                     cards.append(Card(dict: dict))

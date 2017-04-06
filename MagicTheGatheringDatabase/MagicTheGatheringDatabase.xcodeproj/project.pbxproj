@@ -17,6 +17,7 @@
 		3FD412911E9597100029E4C1 /* MagicTheGatheringRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD412901E9597100029E4C1 /* MagicTheGatheringRouter.swift */; };
 		3FD412931E959F3E0029E4C1 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD412921E959F3E0029E4C1 /* APIClient.swift */; };
 		3FD412961E95A83B0029E4C1 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD412951E95A83B0029E4C1 /* Card.swift */; };
+		3FD4129A1E96C4BA0029E4C1 /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD412991E96C4BA0029E4C1 /* CardDataSource.swift */; };
 		484F99D38732EBE693506F86 /* Pods_MagicTheGatheringDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C1BCF13D5104C7B7A1867E /* Pods_MagicTheGatheringDatabase.framework */; };
 		8B3F9D305BF1550B7FD0D174 /* Pods_MagicTheGatheringDatabaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E51367CBD5AEDE538F06B2 /* Pods_MagicTheGatheringDatabaseUITests.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		3FD412901E9597100029E4C1 /* MagicTheGatheringRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagicTheGatheringRouter.swift; sourceTree = "<group>"; };
 		3FD412921E959F3E0029E4C1 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		3FD412951E95A83B0029E4C1 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		3FD412991E96C4BA0029E4C1 /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		4CE7E986557437C9ED95A973 /* Pods-MagicTheGatheringDatabaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTheGatheringDatabaseUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicTheGatheringDatabaseUITests/Pods-MagicTheGatheringDatabaseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7A5ED7D16A4E594B4D5D320F /* Pods-MagicTheGatheringDatabaseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTheGatheringDatabaseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicTheGatheringDatabaseUITests/Pods-MagicTheGatheringDatabaseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		95122449366E0E08A3BE4FEA /* Pods-MagicTheGatheringDatabaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTheGatheringDatabaseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicTheGatheringDatabaseTests/Pods-MagicTheGatheringDatabaseTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				3FD412661E9564940029E4C1 /* LaunchScreen.storyboard */,
 				3FD412691E9564940029E4C1 /* Info.plist */,
 				3FD4128E1E9594E20029E4C1 /* CardsCollectionViewController.swift */,
+				3FD412991E96C4BA0029E4C1 /* CardDataSource.swift */,
 			);
 			path = MagicTheGatheringDatabase;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD4129A1E96C4BA0029E4C1 /* CardDataSource.swift in Sources */,
 				3FD412911E9597100029E4C1 /* MagicTheGatheringRouter.swift in Sources */,
 				3FD4128F1E9594E20029E4C1 /* CardsCollectionViewController.swift in Sources */,
 				3FD412961E95A83B0029E4C1 /* Card.swift in Sources */,
