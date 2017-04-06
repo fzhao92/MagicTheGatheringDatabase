@@ -10,6 +10,7 @@ target 'MagicTheGatheringDatabase' do
   pod 'AlamofireImage', '~> 3.1'
   pod 'SwiftyJSON'
   pod 'SnapKit', '~> 3.2.0'
+  pod 'PagedArray', '~> 0.6'
   target 'MagicTheGatheringDatabaseTests' do
     inherit! :search_paths
     # Pods for testing

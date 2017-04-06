@@ -14,6 +14,8 @@ private let reuseIdentifier = "cardCell"
 class CardDataSource: NSObject, UICollectionViewDataSource {
     
     var cards: [Card] = [Card]()
+    var isLoadingCards = false
+    weak var delegate: RefreshCardsProtocol?
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -28,6 +30,13 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             fatalError("Unexpected indexpath")
         }
         cell.cardCellViewModel = CardCellViewModel(card: cards[indexPath.row])
+        let cellsToLoadFromBottom = 6
+        let cellsLoaded = cards.count
+        
+        if !delegate!.isLoadingCards && (indexPath.row >= (cellsLoaded - cellsToLoadFromBottom)) {
+            delegate?.fetchCards()
+        }
+        
         return cell
     }
     

@@ -22,7 +22,6 @@ enum MagicTheGatheringRouter: URLRequestConvertible {
         case .allCards, .specificCard, .searchCards:
             return .get
         }
-        
     }
     
     var path: String {
