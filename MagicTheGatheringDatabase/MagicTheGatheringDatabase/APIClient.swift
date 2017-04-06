@@ -10,40 +10,56 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+
 class APIClient {
     
-    static func getAllCards(page: Int, completion: @escaping (JSON) -> Void) {
+    static func getAllCards(page: Int, completion: @escaping ([Card]) -> Void) {
         Alamofire.request(MagicTheGatheringRouter.allCards(page: page)).responseJSON { (response) in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
+                let jsonArray = json["cards"].arrayValue
+                var cards = [Card]()
+                for dict in jsonArray {
+                    cards.append(Card(dict: dict))
+                }
+                completion(cards)
             case .failure(let error):
                 print("Error getting json response: \(error)")
+                completion([Card]())
             }
         }
     }
     
-    static func getCardByID(id: String, completion: @escaping (JSON) -> Void) {
+    static func getCardByID(id: String, completion: @escaping (Card) -> Void) {
         Alamofire.request(MagicTheGatheringRouter.specificCard(id: id))
         .responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                print("Specific card json: \(value)")
+                let dict = JSON(value)
+                completion(Card(dict: dict))
             case .failure(let error):
                 print("Error getting json response: \(error)")
             }
         }
     }
     
-    func searchForCard(query: String, completion: (JSON) -> Void) {
+    static func searchForCard(query: String, completion: @escaping ([Card]) -> Void) {
         Alamofire.request(MagicTheGatheringRouter.searchCards(searchQuery: query, page: 1))
         .responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                print("Specific card json: \(value)")
+                let json = JSON(value)
+                let jsonArray = json["cards"].arrayValue
+                print("Search results: \(json)")
+                var cards = [Card]()
+                for dict in jsonArray {
+                    cards.append(Card(dict: dict))
+                }
+                completion(cards)
             case .failure(let error):
                 print("Error getting json response: \(error)")
+                completion([Card]())
             }
         }
     }

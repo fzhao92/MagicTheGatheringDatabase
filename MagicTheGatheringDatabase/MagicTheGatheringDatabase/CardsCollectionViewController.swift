@@ -11,11 +11,17 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class CardsCollectionViewController: UICollectionViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIClient.getAllCards(page: 1) { (response) in
-            print("success!")
+//        APIClient.getAllCards(page: 1) { (cards) in
+//            print("All cards total: \(cards.count)")
+//        }
+//        APIClient.getCardByID(id: "926234c2fe8863f49220a878346c4c5ca79b6046") { (card) in
+//            print("successfully got card by id")
+//        }
+        APIClient.searchForCard(query: "Animate") { (cards) in
+            print("All cards total: \(cards.count)")
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
