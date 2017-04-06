@@ -13,9 +13,9 @@ enum MagicTheGatheringRouter: URLRequestConvertible {
     
     static let baseURL = "https://api.magicthegathering.io/v1/cards"
     
-    case allCards
-    case specificCard(String)
-    case searchCards(String)
+    case allCards(page: Int)
+    case specificCard(id: String)
+    case searchCards(searchQuery: String, page: Int)
     
     var method:     HTTPMethod {
         switch self {
@@ -37,10 +37,12 @@ enum MagicTheGatheringRouter: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
-            case .allCards, .specificCard:
-                return ["pageSize": 15]
-            case .searchCards(let cardName):
-                return ["name": cardName, "pageSize": 15]
+            case .allCards(let page):
+                return ["pageSize": 15, "page": page]
+            case .specificCard:
+                return [:]
+            case .searchCards(let cardName, let page):
+                return ["name": cardName, "pageSize": 15, "page": page]
             }
         }()
         

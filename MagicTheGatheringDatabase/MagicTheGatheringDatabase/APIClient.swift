@@ -12,10 +12,26 @@ import SwiftyJSON
 
 class APIClient {
     
-    func getAllCards(completion: (JSON) -> Void) {
-        Alamofire.request(MagicTheGatheringRouter.allCards).responseJSON { (response) in
-            guard response.result.isSuccess else {
-                print("Error while fetching all cards")
+    static func getAllCards(page: Int, completion: @escaping (JSON) -> Void) {
+        Alamofire.request(MagicTheGatheringRouter.allCards(page: page)).responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+            case .failure(let error):
+                print("Error getting json response: \(error)")
+            }
+        }
+    }
+    
+    static func getCardByID(id: String, completion: @escaping (JSON) -> Void) {
+        Alamofire.request(MagicTheGatheringRouter.specificCard(id: id))
+        .responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                print("Specific card json: \(value)")
+            case .failure(let error):
+                print("Error getting json response: \(error)")
             }
         }
     }

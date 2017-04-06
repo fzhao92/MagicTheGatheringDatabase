@@ -14,7 +14,9 @@ class CardsCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        APIClient.getAllCards(page: 1) { (response) in
+            print("success!")
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
