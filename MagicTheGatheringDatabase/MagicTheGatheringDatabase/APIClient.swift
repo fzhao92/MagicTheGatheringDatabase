@@ -35,4 +35,17 @@ class APIClient {
             }
         }
     }
+    
+    func searchForCard(query: String, completion: (JSON) -> Void) {
+        Alamofire.request(MagicTheGatheringRouter.searchCards(searchQuery: query, page: 1))
+        .responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                print("Specific card json: \(value)")
+            case .failure(let error):
+                print("Error getting json response: \(error)")
+            }
+        }
+    }
+    
 }
