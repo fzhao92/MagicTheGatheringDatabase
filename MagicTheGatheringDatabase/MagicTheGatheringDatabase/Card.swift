@@ -9,10 +9,10 @@
 import UIKit
 import SwiftyJSON
 
-enum Rarity {
-    case NotValuable
-    case Rare
-    case MythicRare
+enum Rarity: String {
+    case NotValuable = "Common"
+    case Rare = "Rare"
+    case MythicRare = "Mythic Rare"
 }
 
 struct Card {

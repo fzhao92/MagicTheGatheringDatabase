@@ -6,8 +6,9 @@
 //  Copyright © 2017 Forrest Zhao. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 
 
@@ -59,6 +60,18 @@ class APIClient {
             case .failure(let error):
                 print("Error getting json response: \(error)")
                 completion([Card]())
+            }
+        }
+    }
+    
+    func downloadImage(url: String, completion: @escaping (UIImage?) -> Void) {
+        Alamofire.request(url).responseImage { (response) in
+            switch response.result {
+            case .success(let value):
+                completion(value)
+            case .failure(let error):
+                print("Error getting image from response: \(error)")
+                completion(nil)
             }
         }
     }
