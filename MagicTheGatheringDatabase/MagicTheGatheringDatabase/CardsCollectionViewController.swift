@@ -78,18 +78,17 @@ extension CardsCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension CardsCollectionViewController: RefreshCardsProtocol {
     
     func fetchCards() {
-        print("fetching page \(pageNumber)")
         isLoadingCards = true
         APIClient.getAllCards(page: pageNumber) { (cards) in
             if let unwrappedDataSource = self.dataSource {
-                unwrappedDataSource.cards = cards
+                unwrappedDataSource.cards += cards
                 self.isLoadingCards = false
+                self.pageNumber += 1
                 self.collectionView!.reloadSections(IndexSet(integer: 0))
             } else {
                 print("DataSource is nil")
             }
         }
-        pageNumber += 1
     }
     
 }

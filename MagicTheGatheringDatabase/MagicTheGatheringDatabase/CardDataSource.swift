@@ -32,9 +32,11 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         cell.cardCellViewModel = CardCellViewModel(card: cards[indexPath.row])
         let cellsToLoadFromBottom = 6
         let cellsLoaded = cards.count
-        
+        print("is loading value is \(delegate!.isLoadingCards)")
+        print("indexpath row is \(indexPath.row)")
+        print("difference is \(cellsLoaded - cellsToLoadFromBottom)")
         if !delegate!.isLoadingCards && (indexPath.row >= (cellsLoaded - cellsToLoadFromBottom)) {
-            delegate?.fetchCards()
+            delegate!.fetchCards()
         }
         
         return cell
